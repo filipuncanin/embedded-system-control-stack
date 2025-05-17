@@ -12,7 +12,7 @@ The system’s core strength lies in its ability to receive new configurations r
 
 | **Feature** | **Description** |
 |-------------|-----------------|
-| **Remote Configuration** | Update device behavior using JSON configurations sent via BLE or MQTT from a C# WPF application, eliminating the need for reprogramming. |
+| **Remote Configuration** | Update device behavior using JSON configurations sent via BLE or MQTT from a Desktop application, eliminating the need for reprogramming. |
 | **Sensor Support** | Interfaces with ADC Sensors for analog measurements, OneWire sensors and configurable digital/analog I/O pins. |
 | **Communication Protocols** | Supports Wi-Fi for MQTT and NTP, BLE for local configuration, and MQTT for remote data exchange and control. |
 | **Ladder Logic** | Implements PLC-style logic through JSON-defined ladder diagrams, supporting contacts, coils, timers, counters, and math operations. |
@@ -112,7 +112,7 @@ The application supports configuring inter-device communication, enabling multip
 ## Usage
 
 ### Configuring the Device
-1. Launch the C# WPF application.
+1. Launch the Desktop application.
 2. Connect to the device via BLE (name: `ESP_XXYYZZ`) or MQTT.
 3. Define:
    - **Variables**: Set up digital inputs, outputs, timers, counters, etc., using the variable configuration panel (e.g., add a timer with preset time or a counter with initial value).
