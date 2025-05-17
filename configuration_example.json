@@ -1,0 +1,74 @@
+{
+    "Device": {
+      "device_name": "ESP32-S3",
+      "logic_voltage": 3.3,
+      "digital_inputs": [ 48, 47, 33, 34 ],
+      "digital_inputs_names": [ "I1", "I2", "I3", "I4" ],
+      "digital_outputs": [ 37, 38, 39, 40 ],
+      "digital_outputs_names": [ "T REL", "REL1", "REL2", "REL3" ],
+      "analog_inputs": [],
+      "analog_inputs_names": [],
+      "dac_outputs": [],
+      "dac_outputs_names": [],
+      "one_wire_inputs": [ 36 ],
+      "one_wire_inputs_names": [ [] ],
+      "one_wire_inputs_devices_types": [ [] ],
+      "one_wire_inputs_devices_addresses": [ [] ],
+      "pwm_channels": 8,
+      "max_hardware_timers": 4,
+      "has_rtos": true,
+      "UART": [ 1, 2 ],
+      "I2C": [ 0, 1 ],
+      "SPI": [ 1, 2 ],
+      "USB": true,
+      "parent_devices": []
+    },
+    "Variables": [
+      { "Type": "Digital Input", "Name": "dig_in_1", "Pin": "I1" },
+      { "Type": "Digital Input", "Name": "dig_in_2", "Pin": "I2" },
+      { "Type": "Digital Input", "Name": "dig_in_3", "Pin": "I3" },
+      { "Type": "Digital Input", "Name": "dig_in_4", "Pin": "I4" },
+      { "Type": "Digital Output", "Name": "dig_out_1", "Pin": "T REL" },
+      { "Type": "Digital Output", "Name": "dig_out_2", "Pin": "REL1" },
+      { "Type": "Digital Output", "Name": "dig_out_3", "Pin": "REL2" },
+      { "Type": "Digital Output", "Name": "dig_out_4", "Pin": "REL3" },
+      { "Type": "Boolean", "Name": "bool_1", "Value": false },
+      { "Type": "Boolean", "Name": "bool_2", "Value": true },
+      { "Type": "Number", "Name": "num_1", "Value": 30 },
+      { "Type": "Number", "Name": "num_2", "Value": 12 },
+      { "Type": "Counter", "Name": "counter_1", "PV": 5, "CV": 0, "CU": true, "CD": false, "QU": false, "QD": false },
+      { "Type": "Counter", "Name": "counter_2", "PV": 5, "CV": 5, "CU": false, "CD": true, "QU": false, "QD": false },
+      { "Type": "Timer", "Name": "timer_1", "PT": 5000, "ET": 0, "IN": false, "Q": false },
+      { "Type": "Timer", "Name": "timer_2", "PT": 5000, "ET": 0, "IN": false, "Q": false },
+      { "Type": "Current Time", "Name": "current_time", "Value": 0 },
+      { "Type": "Time", "Name": "time_1", "Value": 0 },
+      { "Type": "Time", "Name": "time_2", "Value": 0 }
+    ],
+    "Wires": [
+      {
+        "Nodes": [
+          { "Type": "LadderElement", "ElementType": "NOContact", "ComboBoxValues": [ "dig_in_1"] },
+          { "Type": "LadderElement", "ElementType": "Coil", "ComboBoxValues": [ "dig_out_1" ] }
+        ]
+      },
+      {
+        "Nodes": [
+          {  "Type": "LadderElement", "ElementType": "NOContact", "ComboBoxValues": [ "dig_in_2" ] },
+          { "Type": "LadderElement", "ElementType": "Coil", "ComboBoxValues": [ "dig_out_2" ] }
+        ]
+      },
+      {
+        "Nodes": [
+          { "Type": "LadderElement", "ElementType": "NOContact", "ComboBoxValues": [ "dig_in_3" ] },
+          { "Type": "LadderElement", "ElementType": "Coil", "ComboBoxValues": [ "dig_out_3" ] }
+        ]
+      },
+      {
+        "Nodes": [
+          { "Type": "LadderElement", "ElementType": "NOContact", "ComboBoxValues": [ "dig_in_4" ] },
+          { "Type": "LadderElement", "ElementType": "Coil", "ComboBoxValues": [ "dig_out_4" ]
+          }
+        ]
+      }
+    ]
+  }

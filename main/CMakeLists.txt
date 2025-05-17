@@ -1,0 +1,31 @@
+idf_component_register(
+    SRCS 
+        "adc_sensor.c" 
+        "TM7711.c" 
+        "ble.c" 
+        "ntp.c" 
+        "one_wire_detect.c" 
+        "ladder_elements.c" 
+        "variables.c" 
+        "conf_task_manager.c" 
+        "device_config.c" 
+        "nvs_utils.c" 
+        "sensor.c" 
+        "mqtt.c" 
+        "wifi.c" 
+        "main.c"
+    INCLUDE_DIRS 
+        "."
+        "../config"
+    REQUIRES 
+        driver 
+        esp_wifi 
+        nvs_flash 
+        mqtt 
+        json 
+        bt
+    PRIV_REQUIRES 
+        onewire 
+        ds18x20
+        spi_flash
+)

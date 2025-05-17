@@ -1,0 +1,29 @@
+/**
+ * @file config.h
+ * @brief Configuration header for Wi-Fi and MQTT settings.
+ *
+ * This file defines preprocessor macros for Wi-Fi credentials and the MQTT broker URI.
+ * These values are used throughout the application to establish network and broker connections.
+ */
+
+#ifndef CONFIG_H
+#define CONFIG_H
+
+/**
+ * @brief Wi-Fi SSID (network name) used for connecting the device to a wireless network.
+ */
+#define WIFI_SSID "wifi_ssid" 
+
+/**
+ * @brief Wi-Fi password associated with the SSID.
+ */
+#define WIFI_PASS "wifi_pass"      
+
+/**
+ * @brief URI of the MQTT broker, including optional credentials.
+ *
+ * Format: mqtt://username:password\@broker_address
+ */
+#define MQTT_BROKER_URI "mqtt://username:password@mqtt_broker_uri"
+
+#endif

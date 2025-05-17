@@ -1,0 +1,7 @@
+.vscode/
+build/
+config/config.h
+sdkconfig
+sdkconfig.old
+partitions.csv
+doxygen.conf
