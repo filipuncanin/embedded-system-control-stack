@@ -2,11 +2,11 @@
 
 ## Overview
 
-This project delivers a sophisticated control system powered by the ESP32 microcontroller, designed for seamless remote configuration through a C# WPF application. By leveraging JSON configuration files, such as `configuration_example.json`, users can dynamically update the device’s behavior without reprogramming, making it ideal for automation, IoT, and industrial control applications. The firmware, built on the [ESP-IDF framework](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/index.html), supports a wide range of sensors, communication protocols, and programmable logic control (PLC) via ladder logic, ensuring flexibility and scalability.
+This project delivers a sophisticated control system powered by the ESP32 microcontroller, designed for seamless remote configuration through a desktop application. By leveraging JSON configuration files, such as `configuration_example.json`, users can dynamically update the device’s behavior without reprogramming, making it ideal for automation, IoT, and industrial control applications. The firmware, built on the [ESP-IDF framework](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/index.html), supports a wide range of sensors, communication protocols, and programmable logic control (PLC) via ladder logic, ensuring flexibility and scalability.
 
 
 
-The system’s core strength lies in its ability to receive new configurations remotely, eliminating the need for physical access or firmware updates. This is achieved through a C# WPF application that sends JSON files defining hardware settings, variables, and control logic to the device via BLE or MQTT. The `configuration_example.json` file serves as an example, demonstrating how digital inputs can control outputs in a simple relay-like setup.
+The system’s core strength lies in its ability to receive new configurations remotely, eliminating the need for physical access or firmware updates. This is achieved through a desktop application that sends JSON files defining hardware settings, variables, and control logic to the device via BLE or MQTT. The `configuration_example.json` file serves as an example, demonstrating how digital inputs can control outputs in a simple relay-like setup.
 
 ## Key Features
 
@@ -37,24 +37,24 @@ The system comprises two primary components:
   - `variables.c`: Manages variable storage and updates.
   - `ladder_elements.c`: Defines ladder logic elements (e.g., NO/NC contacts, coils).
 
-### C# WPF Application
-- **Purpose**: Provides a user-friendly interface called "Ladder Diagram Configurator" to design hardware settings, variables, and ladder logic. The interface includes sections for adding and configuring digital inputs/outputs, timers, counters, and OneWire sensors, with a monitoring panel for real-time device status.
+### Desktop Application (not included in this repository)
+- **Purpose**: Provides a user-friendly interface to design hardware settings, variables, and ladder logic.
 - **Key Features**:
-  - **Ladder Diagram Editor**: Allows users to create rungs with elements like NO/NC contacts, coils, timers, counters, and comparisons using a drag-and-drop or manual entry system.
-  - **Variable Configuration**: Supports defining digital inputs/outputs, booleans, numbers, timers, counters, and sensor variables with associated pins and values.
+  - **Ladder Diagram Editor**: Allows users to create rungs with elements like NO/NC contacts, coils, timers, counters, and comparisons using a drag-and-drop entry system.
+  - **Variable Configuration**: Supports defining digital/analog inputs/outputs, booleans, numbers, timers, counters, and sensor variables with associated pins and values.
   - **Monitoring Panel**: Displays real-time data, including OneWire sensor statuses (e.g., DS18x20 temperature sensors) and variable states, with options to add new sensors.
-  - **Communication**: Sends JSON configurations to the device via BLE or MQTT and monitors device status, with buttons for connecting/disconnecting, sending configurations, and importing/exporting files.
+  - **Communication**: Sends JSON configurations to the device via BLE or MQTT and monitors device status.
 
 ### Communication Flow
-- **Configuration**: The C# application sends JSON files to the device, which stores them in NVS and applies them instantly.
-- **Data Exchange**: The device publishes sensor data and variable states via MQTT topics (e.g., `/monitor`), and the application subscribes for real-time updates.
+- **Configuration**: The desktop application sends JSON files to the device, which stores them in NVS and applies them instantly.
+- **Data Exchange**: The device publishes sensor data and variable states via MQTT topics, and the application subscribes for real-time updates.
 - **Control**: The application can send commands or update variables via BLE characteristics or MQTT messages.
 
 ## Inter-Device Communication
 
 The application supports configuring inter-device communication, enabling multiple ESP32 devices to share data. Users can assign one or more parent devices to an ESP32 in the hardware configuration section of the interface. Once set, the device automatically sends its data (e.g., variable states, sensor readings) to its designated parent devices via MQTT. This feature facilitates coordinated control in distributed IoT or automation systems.
 
-- **Configuration**: In the C# APP Parent(s) configuration panel, specify parent devices by adding their MAC addresses.
+- **Configuration**: In the desktop app Parent(s) configuration panel, specify parent devices by adding their MAC addresses.
 
 ## Hardware Requirements
 
@@ -71,7 +71,7 @@ The application supports configuring inter-device communication, enabling multip
 | **Component** | **Details** |
 |---------------|-------------|
 | **ESP-IDF** | Latest stable version (v5.4.1 or later recommended) [ESP-IDF Releases](https://github.com/espressif/esp-idf/releases) |
-| **C# WPF Application** | Required for configuration (not included in this repository) |
+| **Desktop Application** | Required for configuration (not included in this repository) |
 | **Dependencies** | - ESP-IDF libraries: `driver`, `esp_wifi`, `nvs_flash`, `mqtt`, `json`, `bt`.<br>- External components: `onewire` and `ds18x20` from [esp-idf-lib](https://github.com/UncleRus/esp-idf-lib), included in the project via `EXTRA_COMPONENT_DIRS` in `CMakeLists.txt`. |
 | **Tools** | CMake 3.16+, Python 3, MQTT broker (e.g., Mosquitto) |
 
@@ -107,7 +107,7 @@ The application supports configuring inter-device communication, enabling multip
    idf.py monitor
    ```
 
-7. **Set Up C# WPF Application**: Configure the application to connect via BLE or MQTT, ensuring it can communicate with the device.
+7. **Set Desktop Application**: Configure the application to connect via BLE or MQTT, ensuring it can communicate with the device.
 
 ## Usage
 
@@ -115,7 +115,6 @@ The application supports configuring inter-device communication, enabling multip
 1. Launch the C# WPF application.
 2. Connect to the device via BLE (name: `ESP_XXYYZZ`) or MQTT.
 3. Define:
-   - **Pins**: Assign GPIO pins (e.g., inputs: 48, 47, 33, 34; outputs: 37, 38, 39, 40) in the hardware configuration section.
    - **Variables**: Set up digital inputs, outputs, timers, counters, etc., using the variable configuration panel (e.g., add a timer with preset time or a counter with initial value).
    - **Ladder Logic**: Create logic using the ladder diagram editor by adding rungs with elements like NOContact, Coil, TimerOnDelay, or comparisons, accessible via the toolbar.
 4. Save the configuration and send it to the device. The device applies and stores it in NVS.
@@ -124,7 +123,7 @@ The application supports configuring inter-device communication, enabling multip
 
 
 ### Example Configuration
-The `configuration_example.json` configures four digital inputs to control four outputs:
+The `configuration_example.json` configures four digital input to control digital output:
 ```json
 {
   "Device": {
@@ -154,7 +153,6 @@ The `configuration_example.json` configures four digital inputs to control four 
   "Variables": [
     {"Type": "Digital Input", "Name": "dig_in_1", "Pin": "I1"},
     {"Type": "Digital Output", "Name": "dig_out_1", "Pin": "T REL"},
-    {"Type": "Timer", "Name": "timer_1", "PT": 5000, "ET": 0, "IN": false, "Q": false}
   ],
   "Wires": [
     {
@@ -208,7 +206,7 @@ Ladder logic mimics PLC programming, with each “wire” representing a rung:
 ## Adding New Functionality
 
 To add new functionality:
-1. **Define Variables**: Add new variables (e.g., timers, counters) in the C# application.
+1. **Define Variables**: Add new variables (e.g., timers, counters) in the desktop application.
 2. **Design Logic**: Create ladder diagrams incorporating new variables.
 3. **Send Configuration**: Save and transmit the JSON file to the device.
 
